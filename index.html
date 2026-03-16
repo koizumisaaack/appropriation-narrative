@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    body { margin: 0; background: transparent; font-family: sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { background: #000; }
 
     .gif-item {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.6s ease, transform 0.6s ease;
-      margin: 60px auto;
-      max-width: 600px;
-      text-align: center;
     }
 
     .gif-item.visible {
@@ -20,8 +23,10 @@
     }
 
     .gif-item img {
-      width: 100%;
+      max-width: 90%;
+      max-height: 80vh;
       border-radius: 8px;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -44,9 +49,11 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible'); // fades out when you scroll past
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.3 });
 
     document.querySelectorAll('.gif-item').forEach(el => observer.observe(el));
   </script>
