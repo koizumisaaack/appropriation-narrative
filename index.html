@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { margin: 0; background: transparent; font-family: sans-serif; }
+
+    .gif-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      margin: 60px auto;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .gif-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gif-item img {
+      width: 100%;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gif-item">
+    <img src="YOUR_GIF_URL_1" alt="gif 1">
+  </div>
+
+  <div class="gif-item">
+    <img src="YOUR_GIF_URL_2" alt="gif 2">
+  </div>
+
+  <div class="gif-item">
+    <img src="YOUR_GIF_URL_3" alt="gif 3">
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.gif-item').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
