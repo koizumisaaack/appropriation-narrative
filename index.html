@@ -148,7 +148,8 @@
 
     // Hide indicator when user reaches the last gif
     const indicator = document.getElementById('scroll-indicator');
-    const lastGif = document.querySelectorAll('.gif-item')[2];
+    const gifItems = document.querySelectorAll('.gif-item');
+    const lastGif = gifItems[gifItems.length - 1];
 
     const lastObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
